@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FDOS — Founder Development Operating System</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0d0d0d;
+    --off-white: #f5f4f0;
+    --mid: #7a7a7a;
+    --accent: #c8f135;
+    --accent-dim: #e8f9a8;
+    --rule: #e0e0d8;
+    --card-bg: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--off-white);
+    color: var(--black);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 2.5rem;
+    background: rgba(245,244,240,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--black); }
+
+  /* SECTIONS */
+  section { padding: 6rem 2.5rem; max-width: 960px; margin: 0 auto; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+    max-width: 960px;
+    margin: 0 auto;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 2rem;
+  }
+  .hero-headline {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    max-width: 14ch;
+  }
+  .hero-headline em {
+    font-style: normal;
+    background: var(--accent);
+    padding: 0 0.1em;
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: #444;
+    max-width: 52ch;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .hero-meta-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .hero-meta-value {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .hero-scroll {
+    margin-top: 5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .hero-scroll::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--mid);
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 0;
+  }
+
+  /* SECTION HEADERS */
+  .section-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1rem;
+  }
+  .section-heading {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-bottom: 1.5rem;
+  }
+  .section-body {
+    font-size: 1rem;
+    color: #444;
+    max-width: 60ch;
+    line-height: 1.85;
+  }
+
+  /* WHY */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    margin-top: 3.5rem;
+    border: 1px solid var(--rule);
+  }
+  .why-cell {
+    background: var(--off-white);
+    padding: 2rem;
+  }
+  .why-cell-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 0.6rem;
+  }
+  .why-cell-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .why-cell.accent { background: var(--accent); }
+
+  /* PHILOSOPHY */
+  .principles-list {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .principle {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .principle:first-child { border-top: 1px solid var(--rule); }
+  .principle-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.75rem;
+    color: var(--mid);
+    letter-spacing: 0.06em;
+    padding-top: 0.2rem;
+    min-width: 2rem;
+  }
+  .principle-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .principle-sub {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.3rem;
+  }
+
+  /* CAPABILITIES */
+  .cap-intro {
+    margin-bottom: 3rem;
+  }
+  .cap-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .cap-card {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    padding: 1.8rem;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .cap-card:hover { border-color: #bbb; }
+  .cap-card.highlight {
+    background: var(--black);
+    color: var(--off-white);
+    border-color: var(--black);
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  .cap-number {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--mid);
+    margin-bottom: 0.8rem;
+  }
+  .cap-card.highlight .cap-number { color: var(--accent); }
+  .cap-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .cap-outcome {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.6;
+  }
+  .cap-card.highlight .cap-outcome { color: #aaa; }
+  .cap-card.highlight .cap-right p {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.7;
+  }
+  .cap-card.highlight .cap-right strong {
+    color: var(--accent);
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* JOURNEY */
+  .journey-wrapper {
+    margin-top: 3.5rem;
+    position: relative;
+  }
+  .journey-phases {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .phase-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+    min-height: 70px;
+  }
+  .phase-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .phase-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--black);
+    flex-shrink: 0;
+    margin-top: 0.35rem;
+    transition: background 0.2s;
+  }
+  .phase-row.assess .phase-dot { background: var(--accent); border: 2px solid var(--black); }
+  .phase-line {
+    width: 1px;
+    flex: 1;
+    background: var(--rule);
+    margin: 4px 0;
+  }
+  .phase-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-align: center;
+    margin-top: 0.2rem;
+  }
+  .phase-content {
+    padding: 0.3rem 0 1.5rem 0;
+  }
+  .phase-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+  .phase-desc {
+    font-size: 0.85rem;
+    color: #666;
+  }
+  .phase-gate {
+    background: var(--accent);
+    border: 1px solid #b0d820;
+    padding: 1rem 1.5rem;
+    margin: 1rem 0 1rem 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    grid-column: 2;
+  }
+  .gate-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  /* FORUM */
+  .forum-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .forum-block h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .forum-block ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .forum-block li {
+    font-size: 0.9rem;
+    color: #444;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+  .forum-block li::before {
+    content: '→';
+    color: var(--mid);
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    margin-top: 0.1rem;
+  }
+
+  /* HONEST SECTION */
+  .honest-box {
+    background: var(--black);
+    color: var(--off-white);
+    padding: 3rem;
+    margin-top: 3rem;
+  }
+  .honest-box h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+  }
+  .honest-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+  .honest-col h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #777;
+    margin-bottom: 0.8rem;
+  }
+  .honest-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .honest-col li {
+    font-size: 0.9rem;
+    color: #ccc;
+    display: flex;
+    gap: 0.6rem;
+  }
+  .honest-col.no li::before { content: '✕'; color: #666; }
+  .honest-col.yes li::before { content: '✓'; color: var(--accent); }
+
+  /* FINAL */
+  .final-section {
+    background: var(--black);
+    color: var(--off-white);
+    padding: 7rem 2.5rem;
+    text-align: center;
+  }
+  .final-section .section-eyebrow { color: var(--accent); margin-bottom: 1.5rem; }
+  .final-quote {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    line-height: 1.2;
+    max-width: 18ch;
+    margin: 0 auto 2rem;
+    letter-spacing: -0.02em;
+  }
+  .final-body {
+    font-size: 1rem;
+    color: #aaa;
+    max-width: 50ch;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+  .version-tag {
+    margin-top: 4rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #555;
+  }
+
+  /* FULL-WIDTH WRAPPER */
+  .full-bleed {
+    background: var(--card-bg);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .full-bleed section { padding-top: 5rem; padding-bottom: 5rem; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.2rem; }
+    .hero { padding-left: 1.2rem; padding-right: 1.2rem; }
+    .why-grid { grid-template-columns: 1fr; }
+    .cap-grid { grid-template-columns: 1fr; }
+    .cap-card.highlight { grid-column: span 1; grid-template-columns: 1fr; }
+    .honest-cols { grid-template-columns: 1fr; }
+    .forum-grid { grid-template-columns: 1fr; }
+    .hero-meta { gap: 1.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">FDOS</span>
+  <ul class="nav-links">
+    <li><a href="#why">Why</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#forum">Forum</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Founder Development Operating System — Version 1.0</p>
+  <h1 class="hero-headline">Build the founder.<br><em>Then</em> the venture.</h1>
+  <p class="hero-sub">Most ventures don't fail because of bad ideas. They fail because the people behind them weren't ready. FDOS exists to change that — starting with us.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Assessment Phase</span>
+      <span class="hero-meta-value">2 Months</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Full Program</span>
+      <span class="hero-meta-value">10 Phases</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Capability Domains</span>
+      <span class="hero-meta-value">10 Areas</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Current Venture</span>
+      <span class="hero-meta-value">AgriVerse</span>
+    </div>
+  </div>
+  <p class="hero-scroll">Scroll to read</p>
+</div>
+
+<hr class="divider">
+
+<!-- WHY -->
+<section id="why">
+  <p class="section-eyebrow">The Problem</p>
+  <h2 class="section-heading">Why most ventures stall before they start</h2>
+  <p class="section-body">The founders weren't prepared. Not because they lacked passion or a good idea — but because they lacked the systems, skills, and discipline that ventures actually run on. FDOS is the answer to that gap.</p>
+
+  <div class="why-grid">
+    <div class="why-cell accent">
+      <p class="why-cell-label">The real failure point</p>
+      <p class="why-cell-text">Ventures fail because of people problems, not idea problems.</p>
+    </div>
+    <div class="why-cell">
+      <p class="why-cell-label">Common weaknesses</p>
+      <p class="why-cell-text">Poor communication. Weak research. No systems. Inconsistent execution.</p>
+    </div>
+    <div class="why-cell">
+      <p class="why-cell-label">The wrong approach</p>
+      <p class="why-cell-text">Rush to build → scramble to learn → collapse under pressure.</p>
+    </div>
+    <div class="why-cell">
+      <p class="why-cell-label">The FDOS approach</p>
+      <p class="why-cell-text">Develop the founder first. Build the venture on that foundation.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PHILOSOPHY -->
+<div class="full-bleed">
+<section id="philosophy">
+  <p class="section-eyebrow">Core Philosophy</p>
+  <h2 class="section-heading">What we actually believe</h2>
+  <p class="section-body">These aren't motivational posters. They're operating constraints — the principles that govern how we make decisions, set priorities, and measure progress.</p>
+
+  <div class="principles-list">
+    <div class="principle">
+      <span class="principle-num">01</span>
+      <div>
+        <p class="principle-text">Founder development precedes business development.</p>
+        <p class="principle-sub">The person building the thing matters more than the thing itself.</p>
+      </div>
+    </div>
+    <div class="principle">
+      <span class="principle-num">02</span>
+      <div>
+        <p class="principle-text">Learn before building.</p>
+        <p class="principle-sub">Building without understanding produces work that needs to be redone.</p>
+      </div>
+    </div>
+    <div class="principle">
+      <span class="principle-num">03</span>
+      <div>
+        <p class="principle-text">Validate before scaling.</p>
+        <p class="principle-sub">Assumptions are expensive. Evidence is cheap by comparison.</p>
+      </div>
+    </div>
+    <div class="principle">
+      <span class="principle-num">04</span>
+      <div>
+        <p class="principle-text">Systems before complexity.</p>
+        <p class="principle-sub">Chaos doesn't become order by adding more to it.</p>
+      </div>
+    </div>
+    <div class="principle">
+      <span class="principle-num">05</span>
+      <div>
+        <p class="principle-text">Consistency beats intensity.</p>
+        <p class="principle-sub">Showing up every week beats sprinting for two and disappearing for four.</p>
+      </div>
+    </div>
+    <div class="principle">
+      <span class="principle-num">06</span>
+      <div>
+        <p class="principle-text">Capability beats activity.</p>
+        <p class="principle-sub">Being busy is not the same as making progress.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <p class="section-eyebrow">The Founder Capability Framework</p>
+  <h2 class="section-heading">Ten domains. One capable founder.</h2>
+  <p class="section-body">A founder is not one skill. They are a stack of capabilities — and weakness in any one can limit everything else. FDOS builds all ten, deliberately and in sequence.</p>
+
+  <div class="cap-grid" style="margin-top: 3rem;">
+
+    <div class="cap-card">
+      <p class="cap-number">Domain 01</p>
+      <p class="cap-name">Thinking</p>
+      <p class="cap-outcome">First principles reasoning, critical thinking, and decision-making under uncertainty.</p>
+    </div>
+
+    <div class="cap-card">
+      <p class="cap-number">Domain 02</p>
+      <p class="cap-name">Communication</p>
+      <p class="cap-outcome">Speaking clearly, presenting ideas, writing professionally, listening actively.</p>
+    </div>
+
+    <div class="cap-card">
+      <p class="cap-number">Domain 03</p>
+      <p class="cap-name">Research</p>
+      <p class="cap-outcome">Customer interviews, market analysis, competitor study — discovering reality, not guessing at it.</p>
+    </div>
+
+    <div class="cap-card">
+      <p class="cap-number">Domain 04</p>
+      <p class="cap-name">Business Fundamentals</p>
+      <p class="cap-outcome">How businesses create, deliver, and capture value. How markets actually work.</p>
+    </div>
+
+    <div class="cap-card">
+      <p class="cap-number">Domain 05</p>
+      <p class="cap-name">Data & Analysis</p>
+      <p class="cap-outcome">Spreadsheets, KPIs, trends, and evidence-based decision making.</p>
+    </div>
+
+    <div class="cap-card">
+      <p class="cap-number">Domain 06</p>
+      <p class="cap-name">Technology & AI</p>
+      <p class="cap-outcome">Software fundamentals, AI tools, and automation — leverage technology instead of fearing it.</p>
+    </div>
+
+    <div class="cap-card">
+      <p class="cap-number">Domain 07</p>
+      <p class="cap-name">Operations</p>
+      <p class="cap-outcome">Documentation, SOPs, project management — how businesses run day to day.</p>
+    </div>
+
+    <div class="cap-card">
+      <p class="cap-number">Domain 08</p>
+      <p class="cap-name">Sales & Marketing</p>
+      <p class="cap-outcome">Acquiring customers, negotiating, building partnerships — how revenue is generated.</p>
+    </div>
+
+    <div class="cap-card">
+      <p class="cap-number">Domain 09</p>
+      <p class="cap-name">Finance</p>
+      <p class="cap-outcome">Revenue, profit, cash flow, financial modeling, and fundraising fundamentals.</p>
+    </div>
+
+    <div class="cap-card highlight">
+      <div class="cap-left">
+        <p class="cap-number">Domain 10 — The Multiplier</p>
+        <p class="cap-name" style="font-size:1.5rem; color: var(--off-white);">Execution</p>
+        <p class="cap-outcome">Time management, deep work, goal setting, personal systems, and consistent follow-through.</p>
+      </div>
+      <div class="cap-right">
+        <strong>Why it's different</strong>
+        <p>Every other domain can be learned and still come to nothing. Execution is the force that converts knowledge into outcomes. Without it, the other nine domains are interesting — but useless. This is why FDOS treats it as a domain of its own.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- JOURNEY -->
+<div class="full-bleed">
+<section id="journey">
+  <p class="section-eyebrow">The Development Journey</p>
+  <h2 class="section-heading">How we get there</h2>
+  <p class="section-body">Ten phases. Each one builds on the last. The first two months serve as an assessment — for the opportunity, and for each other.</p>
+
+  <div class="journey-wrapper">
+    <div class="journey-phases">
+
+      <div class="phase-row assess">
+        <div class="phase-left">
+          <div class="phase-dot"></div>
+          <div class="phase-line"></div>
+        </div>
+        <div class="phase-content">
+          <p class="phase-title">Phase 0 — Founder Readiness</p>
+          <p class="phase-desc">Standards, accountability, professionalism. We establish what it means to show up.</p>
+        </div>
+      </div>
+
+      <div class="phase-row assess">
+        <div class="phase-left">
+          <div class="phase-dot"></div>
+          <div class="phase-line"></div>
+        </div>
+        <div class="phase-content">
+          <p class="phase-title">Phase 1 — Thinking & Communication</p>
+          <p class="phase-desc">Clear thinking, professional writing, presentations, and customer interviewing.</p>
+        </div>
+      </div>
+
+      <div class="gate-row">
+        <div></div>
+        <div class="phase-gate">
+          <strong>2-Month Assessment Gate</strong><br>
+          Is this opportunity worth pursuing? Do we have the right team? Do we understand the problem? Do we have what it takes to move forward?<br><br>
+          <em>If yes — continue. If not — adjust, restructure, or stop.</em>
+        </div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-left">
+          <div class="phase-dot"></div>
+          <div class="phase-line"></div>
+        </div>
+        <div class="phase-content">
+          <p class="phase-title">Phase 2 — Business Foundations</p>
+          <p class="phase-desc">Value creation, business models, economics, startup fundamentals.</p>
+        </div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-left">
+          <div class="phase-dot"></div>
+          <div class="phase-line"></div>
+        </div>
+        <div class="phase-content">
+          <p class="phase-title">Phase 3 — Research & Validation</p>
+          <p class="phase-desc">Customer research, market sizing, competitor analysis, idea validation.</p>
+        </div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-left">
+          <div class="phase-dot"></div>
+          <div class="phase-line"></div>
+        </div>
+        <div class="phase-content">
+          <p class="phase-title">Phase 4 — Data & Analysis</p>
+          <p class="phase-desc">Spreadsheets, dashboards, KPIs, evidence-based decision making.</p>
+        </div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-left">
+          <div class="phase-dot"></div>
+          <div class="phase-line"></div>
+        </div>
+        <div class="phase-content">
+          <p class="phase-title">Phase 5 — Technology & AI</p>
+          <p class="phase-desc">Software literacy, AI tools, automation workflows.</p>
+        </div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-left">
+          <div class="phase-dot"></div>
+          <div class="phase-line"></div>
+        </div>
+        <div class="phase-content">
+          <p class="phase-title">Phase 6 — Business Design</p>
+          <p class="phase-desc">Business model canvas, value proposition, customer journey — AgriVerse gets redefined here.</p>
+        </div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-left">
+          <div class="phase-dot"></div>
+          <div class="phase-line"></div>
+        </div>
+        <div class="phase-content">
+          <p class="phase-title">Phase 7 — Operations & Project Management</p>
+          <p class="phase-desc">Documentation, SOPs, Notion, Trello — building systems that scale.</p>
+        </div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-left">
+          <div class="phase-dot"></div>
+          <div class="phase-line"></div>
+        </div>
+        <div class="phase-content">
+          <p class="phase-title">Phase 8 — Sales & Marketing</p>
+          <p class="phase-desc">Sales fundamentals, negotiation, marketing, partnerships. Acquire first users.</p>
+        </div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-left">
+          <div class="phase-dot"></div>
+          <div class="phase-line"></div>
+        </div>
+        <div class="phase-content">
+          <p class="phase-title">Phase 9 — Finance</p>
+          <p class="phase-desc">Revenue, profit, cash flow, financial modeling, fundraising.</p>
+        </div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-left">
+          <div class="phase-dot"></div>
+        </div>
+        <div class="phase-content">
+          <p class="phase-title">Phase 10 — Build & Launch</p>
+          <p class="phase-desc">MVP design, build, user testing, launch. We build only after understanding.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- FORUM -->
+<section id="forum">
+  <p class="section-eyebrow">Accountability</p>
+  <h2 class="section-heading">The Founder Forum</h2>
+  <p class="section-body">Every week, every member reports. Not to a manager — to each other. The Forum is how we stay honest, surface problems early, and build the habit of consistent communication.</p>
+
+  <div class="forum-grid">
+    <div class="forum-block">
+      <h3>Each member reports</h3>
+      <ul>
+        <li>What they learned this week</li>
+        <li>What they completed</li>
+        <li>Challenges they're facing</li>
+        <li>Questions requiring support</li>
+      </ul>
+    </div>
+    <div class="forum-block">
+      <h3>The Forum exists for</h3>
+      <ul>
+        <li>Accountability — no silent disappearing</li>
+        <li>Reflection — not just doing, but understanding</li>
+        <li>Knowledge sharing — what you learn, we all learn</li>
+        <li>Progress tracking — so we see who's growing</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="honest-box">
+    <h3>Let's be honest about what this is</h3>
+    <div class="honest-cols">
+      <div class="honest-col no">
+        <h4>This is NOT</h4>
+        <ul>
+          <li>A school project</li>
+          <li>A startup incubator</li>
+          <li>A race to launch a website</li>
+          <li>A shortcut to funding</li>
+          <li>Something you do when you feel like it</li>
+        </ul>
+      </div>
+      <div class="honest-col yes">
+        <h4>This IS</h4>
+        <ul>
+          <li>Founder development</li>
+          <li>Business discovery</li>
+          <li>Venture preparation</li>
+          <li>Capability building</li>
+          <li>A long-term commitment</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<div class="final-section">
+  <p class="section-eyebrow">Final Statement</p>
+  <p class="final-quote">Companies can be built, changed, or replaced. Capability remains.</p>
+  <p class="final-body">The goal of FDOS is not to launch a company. It is to become the kind of people who can build companies — repeatedly, in any context, on any opportunity. That is what we are doing here.</p>
+  <p class="version-tag">FDOS Version 1.0 — Founder Development Operating System</p>
+</div>
+
+</body>
+</html>
