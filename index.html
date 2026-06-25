@@ -13,7 +13,6 @@
     --off-white: #f5f4f0;
     --mid: #7a7a7a;
     --accent: #c8f135;
-    --accent-dim: #e8f9a8;
     --rule: #e0e0d8;
     --card-bg: #ffffff;
   }
@@ -48,21 +47,12 @@
     font-size: 1rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--black);
   }
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--mid);
-    text-decoration: none;
-    transition: color 0.2s;
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--mid); text-decoration: none; transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--black); }
 
@@ -72,432 +62,307 @@
   /* HERO */
   .hero {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 8rem;
-    padding-bottom: 4rem;
-    max-width: 960px;
-    margin: 0 auto;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 2.5rem 4rem;
+    max-width: 960px; margin: 0 auto;
   }
   .hero-eyebrow {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 2rem;
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--mid); margin-bottom: 2rem;
   }
   .hero-headline {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
+    font-family: 'Syne', sans-serif; font-weight: 800;
     font-size: clamp(2.8rem, 7vw, 5.5rem);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 2rem;
-    max-width: 14ch;
+    line-height: 1.05; letter-spacing: -0.02em;
+    margin-bottom: 2rem; max-width: 14ch;
   }
   .hero-headline em {
-    font-style: normal;
-    background: var(--accent);
-    padding: 0 0.1em;
+    font-style: normal; background: var(--accent); padding: 0 0.1em;
   }
   .hero-sub {
-    font-size: 1.15rem;
-    color: #444;
-    max-width: 52ch;
-    margin-bottom: 3rem;
-    line-height: 1.8;
+    font-size: 1.15rem; color: #444;
+    max-width: 52ch; margin-bottom: 3rem; line-height: 1.8;
   }
-  .hero-meta {
-    display: flex;
-    gap: 3rem;
-    flex-wrap: wrap;
-  }
-  .hero-meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
+  .hero-meta { display: flex; gap: 3rem; flex-wrap: wrap; }
+  .hero-meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
   .hero-meta-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--mid);
+    font-size: 0.7rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--mid);
   }
   .hero-meta-value {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem;
   }
   .hero-scroll {
-    margin-top: 5rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--mid);
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
+    margin-top: 5rem; font-size: 0.75rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--mid); display: flex; align-items: center; gap: 0.8rem;
   }
   .hero-scroll::before {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 1px;
-    background: var(--mid);
+    content: ''; display: block; width: 40px; height: 1px; background: var(--mid);
   }
 
   /* DIVIDER */
-  .divider {
-    border: none;
-    border-top: 1px solid var(--rule);
-    margin: 0;
-  }
+  .divider { border: none; border-top: 1px solid var(--rule); margin: 0; }
 
   /* SECTION HEADERS */
   .section-eyebrow {
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 1rem;
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--mid); margin-bottom: 1rem;
   }
   .section-heading {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
+    font-family: 'Syne', sans-serif; font-weight: 700;
     font-size: clamp(1.8rem, 4vw, 2.6rem);
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-    margin-bottom: 1.5rem;
+    line-height: 1.15; letter-spacing: -0.015em; margin-bottom: 1.5rem;
   }
   .section-body {
-    font-size: 1rem;
-    color: #444;
-    max-width: 60ch;
-    line-height: 1.85;
+    font-size: 1rem; color: #444; max-width: 60ch; line-height: 1.85;
   }
 
-  /* WHY */
+  /* WHY GRID */
   .why-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--rule);
-    margin-top: 3.5rem;
-    border: 1px solid var(--rule);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--rule);
+    margin-top: 3.5rem; border: 1px solid var(--rule);
   }
-  .why-cell {
-    background: var(--off-white);
-    padding: 2rem;
-  }
+  .why-cell { background: var(--off-white); padding: 2rem; }
   .why-cell-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 0.6rem;
+    font-size: 0.7rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--mid); margin-bottom: 0.6rem;
   }
   .why-cell-text {
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    line-height: 1.5;
+    font-family: 'Syne', sans-serif; font-weight: 600;
+    font-size: 1rem; line-height: 1.5;
   }
   .why-cell.accent { background: var(--accent); }
 
   /* PHILOSOPHY */
-  .principles-list {
-    margin-top: 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+  .principles-list { margin-top: 3rem; }
   .principle {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: flex-start; gap: 1.5rem;
+    padding: 1.5rem 0; border-bottom: 1px solid var(--rule);
   }
   .principle:first-child { border-top: 1px solid var(--rule); }
   .principle-num {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 0.75rem;
-    color: var(--mid);
-    letter-spacing: 0.06em;
-    padding-top: 0.2rem;
-    min-width: 2rem;
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 0.75rem; color: var(--mid);
+    letter-spacing: 0.06em; padding-top: 0.2rem; min-width: 2rem;
   }
   .principle-text {
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 1.1rem;
+    font-family: 'Syne', sans-serif; font-weight: 600; font-size: 1.1rem;
   }
   .principle-sub {
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    font-size: 0.9rem;
-    color: #555;
-    margin-top: 0.3rem;
+    font-size: 0.9rem; color: #555; margin-top: 0.3rem;
   }
 
   /* CAPABILITIES */
-  .cap-intro {
-    margin-bottom: 3rem;
-  }
   .cap-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
   }
   .cap-card {
-    background: var(--card-bg);
-    border: 1px solid var(--rule);
-    padding: 1.8rem;
-    position: relative;
-    transition: border-color 0.2s;
+    background: var(--card-bg); border: 1px solid var(--rule);
+    padding: 1.8rem; transition: border-color 0.2s;
   }
   .cap-card:hover { border-color: #bbb; }
   .cap-card.highlight {
-    background: var(--black);
-    color: var(--off-white);
-    border-color: var(--black);
-    grid-column: span 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: center;
+    background: var(--black); color: var(--off-white);
+    border-color: var(--black); grid-column: span 2;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;
   }
   .cap-number {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: var(--mid);
-    margin-bottom: 0.8rem;
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 0.65rem; letter-spacing: 0.12em;
+    color: var(--mid); margin-bottom: 0.8rem;
   }
   .cap-card.highlight .cap-number { color: var(--accent); }
   .cap-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.1rem; margin-bottom: 0.5rem;
   }
-  .cap-outcome {
-    font-size: 0.85rem;
-    color: #666;
-    line-height: 1.6;
-  }
+  .cap-outcome { font-size: 0.85rem; color: #666; line-height: 1.6; }
   .cap-card.highlight .cap-outcome { color: #aaa; }
-  .cap-card.highlight .cap-right p {
-    font-size: 0.95rem;
-    color: #ccc;
-    line-height: 1.7;
-  }
+  .cap-card.highlight .cap-right p { font-size: 0.95rem; color: #ccc; line-height: 1.7; }
   .cap-card.highlight .cap-right strong {
-    color: var(--accent);
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    display: block;
-    margin-bottom: 0.4rem;
+    color: var(--accent); font-family: 'Syne', sans-serif;
+    font-size: 1rem; display: block; margin-bottom: 0.4rem;
   }
 
-  /* JOURNEY */
-  .journey-wrapper {
-    margin-top: 3.5rem;
-    position: relative;
+  /* =====================
+     JOURNEY — NEW DESIGN
+     ===================== */
+  .journey-wrapper { margin-top: 3.5rem; }
+
+  /* Parallel block for Phase 0 + 1 */
+  .parallel-block {
+    border: 1px solid var(--rule);
+    background: var(--card-bg);
+    margin-bottom: 1rem;
   }
-  .journey-phases {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+  .parallel-label {
+    background: var(--accent);
+    padding: 0.6rem 1.4rem;
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    border-bottom: 1px solid #b0d820;
   }
-  .phase-row {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 1.5rem;
-    align-items: stretch;
-    min-height: 70px;
+  .parallel-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
   }
-  .phase-left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .parallel-inner .phase-card:first-child {
+    border-right: 1px solid var(--rule);
   }
-  .phase-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--black);
-    flex-shrink: 0;
-    margin-top: 0.35rem;
-    transition: background 0.2s;
+
+  /* Individual phase card */
+  .phase-card {
+    cursor: pointer;
+    padding: 1.4rem 1.6rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--card-bg);
+    transition: background 0.15s;
+    user-select: none;
   }
-  .phase-row.assess .phase-dot { background: var(--accent); border: 2px solid var(--black); }
-  .phase-line {
-    width: 1px;
-    flex: 1;
-    background: var(--rule);
-    margin: 4px 0;
+  .phase-card:last-child { border-bottom: none; }
+  .parallel-block .phase-card { border-bottom: none; }
+
+  .phase-card:hover { background: #fafaf7; }
+  .phase-card.open { background: var(--black); color: var(--off-white); }
+  .phase-card.open:hover { background: #1a1a1a; }
+
+  .phase-card-header {
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 1rem;
   }
-  .phase-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--mid);
-    text-align: center;
-    margin-top: 0.2rem;
+  .phase-card-left { flex: 1; }
+  .phase-tag {
+    font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--mid); margin-bottom: 0.3rem;
   }
-  .phase-content {
-    padding: 0.3rem 0 1.5rem 0;
-  }
+  .phase-card.open .phase-tag { color: #888; }
   .phase-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 0.2rem;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
   }
   .phase-desc {
-    font-size: 0.85rem;
-    color: #666;
+    font-size: 0.85rem; color: #666; margin-top: 0.25rem; line-height: 1.5;
   }
-  .phase-gate {
-    background: var(--accent);
-    border: 1px solid #b0d820;
-    padding: 1rem 1.5rem;
-    margin: 1rem 0 1rem 0;
-    font-size: 0.85rem;
-    font-weight: 500;
-    grid-column: 2;
+  .phase-card.open .phase-desc { color: #aaa; }
+
+  .phase-toggle {
+    width: 28px; height: 28px; flex-shrink: 0;
+    border: 1px solid var(--rule); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; color: var(--mid);
+    transition: transform 0.25s, border-color 0.15s;
   }
-  .gate-row {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 1.5rem;
-    margin: 0.5rem 0;
+  .phase-card.open .phase-toggle {
+    border-color: #444; color: var(--accent); transform: rotate(45deg);
   }
+
+  /* Expandable detail panel */
+  .phase-detail {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.25s ease;
+    background: #111; color: var(--off-white);
+  }
+  .phase-detail.expanded { max-height: 600px; }
+  .phase-detail-inner {
+    padding: 1.6rem;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;
+  }
+  .detail-col h4 {
+    font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.7rem;
+  }
+  .detail-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+  .detail-col li {
+    font-size: 0.85rem; color: #ccc; line-height: 1.5;
+    display: flex; gap: 0.5rem; align-items: flex-start;
+  }
+  .detail-col li::before { content: '—'; color: #555; flex-shrink: 0; }
+
+  /* Gate */
+  .gate-block {
+    background: var(--accent); border: 1px solid #b0d820;
+    padding: 1.4rem 1.6rem; margin: 0.4rem 0;
+  }
+  .gate-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 0.9rem; margin-bottom: 0.6rem;
+  }
+  .gate-questions {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+  .gate-q {
+    font-size: 0.85rem; display: flex; gap: 0.5rem;
+  }
+  .gate-q::before { content: '?'; font-weight: 700; flex-shrink: 0; }
+  .gate-note { font-size: 0.8rem; color: #555; }
+
+  /* Standalone phase cards (after gate) */
+  .phases-list { display: flex; flex-direction: column; gap: 0; }
+  .phases-list .phase-card { border: 1px solid var(--rule); margin-bottom: -1px; }
+  .phases-list .phase-detail { border: 1px solid #333; border-top: none; margin-bottom: 0; }
 
   /* FORUM */
   .forum-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 3rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2rem; margin-top: 3rem;
   }
   .forum-block h3 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.6rem;
-    border-bottom: 1px solid var(--rule);
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1rem; margin-bottom: 1rem;
+    padding-bottom: 0.6rem; border-bottom: 1px solid var(--rule);
   }
-  .forum-block ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
+  .forum-block ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
   .forum-block li {
-    font-size: 0.9rem;
-    color: #444;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.7rem;
+    font-size: 0.9rem; color: #444;
+    display: flex; align-items: flex-start; gap: 0.7rem;
   }
-  .forum-block li::before {
-    content: '→';
-    color: var(--mid);
-    flex-shrink: 0;
-    font-size: 0.8rem;
-    margin-top: 0.1rem;
-  }
+  .forum-block li::before { content: '→'; color: var(--mid); font-size: 0.8rem; margin-top: 0.1rem; }
 
-  /* HONEST SECTION */
-  .honest-box {
-    background: var(--black);
-    color: var(--off-white);
-    padding: 3rem;
-    margin-top: 3rem;
-  }
+  /* HONEST BOX */
+  .honest-box { background: var(--black); color: var(--off-white); padding: 3rem; margin-top: 3rem; }
   .honest-box h3 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--accent);
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--accent);
   }
-  .honest-cols {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 1.5rem;
-  }
+  .honest-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.5rem; }
   .honest-col h4 {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #777;
-    margin-bottom: 0.8rem;
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #777; margin-bottom: 0.8rem;
   }
-  .honest-col ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-  .honest-col li {
-    font-size: 0.9rem;
-    color: #ccc;
-    display: flex;
-    gap: 0.6rem;
-  }
+  .honest-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .honest-col li { font-size: 0.9rem; color: #ccc; display: flex; gap: 0.6rem; }
   .honest-col.no li::before { content: '✕'; color: #666; }
   .honest-col.yes li::before { content: '✓'; color: var(--accent); }
 
   /* FINAL */
   .final-section {
-    background: var(--black);
-    color: var(--off-white);
-    padding: 7rem 2.5rem;
-    text-align: center;
+    background: var(--black); color: var(--off-white);
+    padding: 7rem 2.5rem; text-align: center;
   }
   .final-section .section-eyebrow { color: var(--accent); margin-bottom: 1.5rem; }
   .final-quote {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(1.6rem, 4vw, 2.8rem);
-    line-height: 1.2;
-    max-width: 18ch;
-    margin: 0 auto 2rem;
-    letter-spacing: -0.02em;
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(1.6rem, 4vw, 2.8rem); line-height: 1.2;
+    max-width: 18ch; margin: 0 auto 2rem; letter-spacing: -0.02em;
   }
   .final-body {
-    font-size: 1rem;
-    color: #aaa;
-    max-width: 50ch;
-    margin: 0 auto;
-    line-height: 1.8;
+    font-size: 1rem; color: #aaa; max-width: 50ch; margin: 0 auto; line-height: 1.8;
   }
   .version-tag {
-    margin-top: 4rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #555;
+    margin-top: 4rem; font-size: 0.7rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #555;
   }
 
-  /* FULL-WIDTH WRAPPER */
+  /* FULL-BLEED */
   .full-bleed {
     background: var(--card-bg);
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
   }
   .full-bleed section { padding-top: 5rem; padding-bottom: 5rem; }
 
@@ -506,18 +371,16 @@
     nav { padding: 1rem 1.2rem; }
     .nav-links { display: none; }
     section { padding: 4rem 1.2rem; }
-    .hero { padding-left: 1.2rem; padding-right: 1.2rem; }
-    .why-grid { grid-template-columns: 1fr; }
-    .cap-grid { grid-template-columns: 1fr; }
+    .hero { padding: 7rem 1.2rem 3rem; }
+    .why-grid, .cap-grid, .honest-cols, .forum-grid { grid-template-columns: 1fr; }
     .cap-card.highlight { grid-column: span 1; grid-template-columns: 1fr; }
-    .honest-cols { grid-template-columns: 1fr; }
-    .forum-grid { grid-template-columns: 1fr; }
+    .parallel-inner { grid-template-columns: 1fr; }
+    .parallel-inner .phase-card:first-child { border-right: none; border-bottom: 1px solid var(--rule); }
+    .phase-detail-inner { grid-template-columns: 1fr; }
+    .gate-questions { grid-template-columns: 1fr; }
     .hero-meta { gap: 1.5rem; }
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; }
-  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
@@ -567,7 +430,6 @@
   <p class="section-eyebrow">The Problem</p>
   <h2 class="section-heading">Why most ventures stall before they start</h2>
   <p class="section-body">The founders weren't prepared. Not because they lacked passion or a good idea — but because they lacked the systems, skills, and discipline that ventures actually run on. FDOS is the answer to that gap.</p>
-
   <div class="why-grid">
     <div class="why-cell accent">
       <p class="why-cell-label">The real failure point</p>
@@ -596,7 +458,6 @@
   <p class="section-eyebrow">Core Philosophy</p>
   <h2 class="section-heading">What we actually believe</h2>
   <p class="section-body">These aren't motivational posters. They're operating constraints — the principles that govern how we make decisions, set priorities, and measure progress.</p>
-
   <div class="principles-list">
     <div class="principle">
       <span class="principle-num">01</span>
@@ -651,67 +512,56 @@
   <p class="section-eyebrow">The Founder Capability Framework</p>
   <h2 class="section-heading">Ten domains. One capable founder.</h2>
   <p class="section-body">A founder is not one skill. They are a stack of capabilities — and weakness in any one can limit everything else. FDOS builds all ten, deliberately and in sequence.</p>
-
-  <div class="cap-grid" style="margin-top: 3rem;">
-
+  <div class="cap-grid">
     <div class="cap-card">
       <p class="cap-number">Domain 01</p>
       <p class="cap-name">Thinking</p>
       <p class="cap-outcome">First principles reasoning, critical thinking, and decision-making under uncertainty.</p>
     </div>
-
     <div class="cap-card">
       <p class="cap-number">Domain 02</p>
       <p class="cap-name">Communication</p>
       <p class="cap-outcome">Speaking clearly, presenting ideas, writing professionally, listening actively.</p>
     </div>
-
     <div class="cap-card">
       <p class="cap-number">Domain 03</p>
       <p class="cap-name">Research</p>
       <p class="cap-outcome">Customer interviews, market analysis, competitor study — discovering reality, not guessing at it.</p>
     </div>
-
     <div class="cap-card">
       <p class="cap-number">Domain 04</p>
       <p class="cap-name">Business Fundamentals</p>
       <p class="cap-outcome">How businesses create, deliver, and capture value. How markets actually work.</p>
     </div>
-
     <div class="cap-card">
       <p class="cap-number">Domain 05</p>
       <p class="cap-name">Data & Analysis</p>
       <p class="cap-outcome">Spreadsheets, KPIs, trends, and evidence-based decision making.</p>
     </div>
-
     <div class="cap-card">
       <p class="cap-number">Domain 06</p>
       <p class="cap-name">Technology & AI</p>
       <p class="cap-outcome">Software fundamentals, AI tools, and automation — leverage technology instead of fearing it.</p>
     </div>
-
     <div class="cap-card">
       <p class="cap-number">Domain 07</p>
       <p class="cap-name">Operations</p>
       <p class="cap-outcome">Documentation, SOPs, project management — how businesses run day to day.</p>
     </div>
-
     <div class="cap-card">
       <p class="cap-number">Domain 08</p>
       <p class="cap-name">Sales & Marketing</p>
       <p class="cap-outcome">Acquiring customers, negotiating, building partnerships — how revenue is generated.</p>
     </div>
-
     <div class="cap-card">
       <p class="cap-number">Domain 09</p>
       <p class="cap-name">Finance</p>
       <p class="cap-outcome">Revenue, profit, cash flow, financial modeling, and fundraising fundamentals.</p>
     </div>
-
     <div class="cap-card highlight">
       <div class="cap-left">
         <p class="cap-number">Domain 10 — The Multiplier</p>
-        <p class="cap-name" style="font-size:1.5rem; color: var(--off-white);">Execution</p>
+        <p class="cap-name" style="font-size:1.5rem;color:var(--off-white);">Execution</p>
         <p class="cap-outcome">Time management, deep work, goal setting, personal systems, and consistent follow-through.</p>
       </div>
       <div class="cap-right">
@@ -719,7 +569,6 @@
         <p>Every other domain can be learned and still come to nothing. Execution is the force that converts knowledge into outcomes. Without it, the other nine domains are interesting — but useless. This is why FDOS treats it as a domain of its own.</p>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -730,137 +579,495 @@
 <section id="journey">
   <p class="section-eyebrow">The Development Journey</p>
   <h2 class="section-heading">How we get there</h2>
-  <p class="section-body">Ten phases. Each one builds on the last. The first two months serve as an assessment — for the opportunity, and for each other.</p>
+  <p class="section-body">Ten phases, each building on the last. Tap any phase to see what you'll do, what you'll study, and what you'll produce. The first two months run as a parallel foundation block — then we assess before going further.</p>
 
   <div class="journey-wrapper">
-    <div class="journey-phases">
 
-      <div class="phase-row assess">
-        <div class="phase-left">
-          <div class="phase-dot"></div>
-          <div class="phase-line"></div>
+    <!-- PARALLEL FOUNDATION BLOCK -->
+    <div class="parallel-block">
+      <div class="parallel-label">&#9646; Months 1–2 — Foundation Block (run in parallel)</div>
+      <div class="parallel-inner">
+
+        <!-- Phase 0 -->
+        <div>
+          <div class="phase-card" onclick="togglePhase(this)">
+            <div class="phase-card-header">
+              <div class="phase-card-left">
+                <p class="phase-tag">Phase 0</p>
+                <p class="phase-title">Founder Readiness</p>
+                <p class="phase-desc">Standards, accountability, professionalism.</p>
+              </div>
+              <div class="phase-toggle">+</div>
+            </div>
+          </div>
+          <div class="phase-detail">
+            <div class="phase-detail-inner">
+              <div class="detail-col">
+                <h4>What you'll do</h4>
+                <ul>
+                  <li>Create a dedicated business email address</li>
+                  <li>Acquire a business SIM or contact number</li>
+                  <li>Submit your weekly schedule and availability</li>
+                  <li>Attend and contribute to the first Founder Forum</li>
+                </ul>
+              </div>
+              <div class="detail-col">
+                <h4>What you'll study</h4>
+                <ul>
+                  <li>What reliability and accountability actually mean in a working context</li>
+                  <li>The difference between an ownership mindset and an employee mindset</li>
+                  <li>Meeting etiquette and professional communication standards</li>
+                </ul>
+              </div>
+              <div class="detail-col">
+                <h4>What you'll produce</h4>
+                <ul>
+                  <li>A completed founder profile with contact details</li>
+                  <li>A submitted weekly schedule</li>
+                  <li>Your first Founder Forum report</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="phase-content">
-          <p class="phase-title">Phase 0 — Founder Readiness</p>
-          <p class="phase-desc">Standards, accountability, professionalism. We establish what it means to show up.</p>
+
+        <!-- Phase 1 -->
+        <div>
+          <div class="phase-card" onclick="togglePhase(this)">
+            <div class="phase-card-header">
+              <div class="phase-card-left">
+                <p class="phase-tag">Phase 1</p>
+                <p class="phase-title">Thinking & Communication</p>
+                <p class="phase-desc">Clear thinking, professional writing, presentations.</p>
+              </div>
+              <div class="phase-toggle">+</div>
+            </div>
+          </div>
+          <div class="phase-detail">
+            <div class="phase-detail-inner">
+              <div class="detail-col">
+                <h4>What you'll do</h4>
+                <ul>
+                  <li>Deliver a 2-minute presentation to the group each week</li>
+                  <li>Write meeting summaries after every session</li>
+                  <li>Conduct at least one mock customer interview</li>
+                  <li>Participate in structured group discussions</li>
+                </ul>
+              </div>
+              <div class="detail-col">
+                <h4>What you'll study</h4>
+                <ul>
+                  <li>First principles and critical thinking frameworks</li>
+                  <li>Business writing — emails, memos, reports</li>
+                  <li>The Mom Test (how to ask good questions)</li>
+                  <li>Public speaking fundamentals (Talk Like TED)</li>
+                </ul>
+              </div>
+              <div class="detail-col">
+                <h4>What you'll produce</h4>
+                <ul>
+                  <li>Two written research reports or executive summaries</li>
+                  <li>A mock interview writeup with key findings</li>
+                  <li>Weekly presentation recordings or notes</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ASSESSMENT GATE -->
+    <div class="gate-block">
+      <p class="gate-title">2-Month Assessment Gate</p>
+      <div class="gate-questions">
+        <p class="gate-q">Is this opportunity worth pursuing?</p>
+        <p class="gate-q">Do we have the right team?</p>
+        <p class="gate-q">Do we understand the problem?</p>
+        <p class="gate-q">Do we have what it takes to move forward?</p>
+      </div>
+      <p class="gate-note">If yes — continue. If not — adjust, restructure, or stop. This is an honest checkpoint, not a formality.</p>
+    </div>
+
+    <!-- REMAINING PHASES -->
+    <div class="phases-list">
+
+      <div>
+        <div class="phase-card" onclick="togglePhase(this)">
+          <div class="phase-card-header">
+            <div class="phase-card-left">
+              <p class="phase-tag">Phase 2</p>
+              <p class="phase-title">Business Foundations</p>
+              <p class="phase-desc">Value creation, business models, economics, startup fundamentals.</p>
+            </div>
+            <div class="phase-toggle">+</div>
+          </div>
+        </div>
+        <div class="phase-detail">
+          <div class="phase-detail-inner">
+            <div class="detail-col">
+              <h4>What you'll do</h4>
+              <ul>
+                <li>Map out how 3 well-known businesses (Amazon, Uber, Airbnb) make money</li>
+                <li>Identify which business model type applies to AgriVerse</li>
+                <li>Discuss supply, demand, and competition as they apply to your target market</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll study</h4>
+              <ul>
+                <li>Value creation, delivery, and capture</li>
+                <li>Business model types: marketplace, subscription, commission</li>
+                <li>Basic economics: incentives, competition, pricing</li>
+                <li>MVP and product-market fit concepts</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll produce</h4>
+              <ul>
+                <li>A business model breakdown for one real company</li>
+                <li>An initial sketch of AgriVerse's business model type</li>
+                <li>A Founder Forum report covering your key learnings</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="phase-row assess">
-        <div class="phase-left">
-          <div class="phase-dot"></div>
-          <div class="phase-line"></div>
+      <div>
+        <div class="phase-card" onclick="togglePhase(this)">
+          <div class="phase-card-header">
+            <div class="phase-card-left">
+              <p class="phase-tag">Phase 3</p>
+              <p class="phase-title">Research & Validation</p>
+              <p class="phase-desc">Customer research, market sizing, competitor analysis, idea validation.</p>
+            </div>
+            <div class="phase-toggle">+</div>
+          </div>
         </div>
-        <div class="phase-content">
-          <p class="phase-title">Phase 1 — Thinking & Communication</p>
-          <p class="phase-desc">Clear thinking, professional writing, presentations, and customer interviewing.</p>
-        </div>
-      </div>
-
-      <div class="gate-row">
-        <div></div>
-        <div class="phase-gate">
-          <strong>2-Month Assessment Gate</strong><br>
-          Is this opportunity worth pursuing? Do we have the right team? Do we understand the problem? Do we have what it takes to move forward?<br><br>
-          <em>If yes — continue. If not — adjust, restructure, or stop.</em>
-        </div>
-      </div>
-
-      <div class="phase-row">
-        <div class="phase-left">
-          <div class="phase-dot"></div>
-          <div class="phase-line"></div>
-        </div>
-        <div class="phase-content">
-          <p class="phase-title">Phase 2 — Business Foundations</p>
-          <p class="phase-desc">Value creation, business models, economics, startup fundamentals.</p>
-        </div>
-      </div>
-
-      <div class="phase-row">
-        <div class="phase-left">
-          <div class="phase-dot"></div>
-          <div class="phase-line"></div>
-        </div>
-        <div class="phase-content">
-          <p class="phase-title">Phase 3 — Research & Validation</p>
-          <p class="phase-desc">Customer research, market sizing, competitor analysis, idea validation.</p>
-        </div>
-      </div>
-
-      <div class="phase-row">
-        <div class="phase-left">
-          <div class="phase-dot"></div>
-          <div class="phase-line"></div>
-        </div>
-        <div class="phase-content">
-          <p class="phase-title">Phase 4 — Data & Analysis</p>
-          <p class="phase-desc">Spreadsheets, dashboards, KPIs, evidence-based decision making.</p>
+        <div class="phase-detail">
+          <div class="phase-detail-inner">
+            <div class="detail-col">
+              <h4>What you'll do</h4>
+              <ul>
+                <li>Conduct at least 5 real customer interviews</li>
+                <li>Research and document direct and indirect competitors</li>
+                <li>Calculate a rough TAM, SAM, and SOM for AgriVerse</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll study</h4>
+              <ul>
+                <li>How to design and run a customer survey</li>
+                <li>Market sizing methods (TAM / SAM / SOM)</li>
+                <li>Competitor analysis frameworks</li>
+                <li>How to test assumptions with minimal resources</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll produce</h4>
+              <ul>
+                <li>Customer interview report with key insights</li>
+                <li>Competitor analysis document</li>
+                <li>Initial market sizing estimate</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="phase-row">
-        <div class="phase-left">
-          <div class="phase-dot"></div>
-          <div class="phase-line"></div>
+      <div>
+        <div class="phase-card" onclick="togglePhase(this)">
+          <div class="phase-card-header">
+            <div class="phase-card-left">
+              <p class="phase-tag">Phase 4</p>
+              <p class="phase-title">Data & Analysis</p>
+              <p class="phase-desc">Spreadsheets, dashboards, KPIs, evidence-based decision making.</p>
+            </div>
+            <div class="phase-toggle">+</div>
+          </div>
         </div>
-        <div class="phase-content">
-          <p class="phase-title">Phase 5 — Technology & AI</p>
-          <p class="phase-desc">Software literacy, AI tools, automation workflows.</p>
-        </div>
-      </div>
-
-      <div class="phase-row">
-        <div class="phase-left">
-          <div class="phase-dot"></div>
-          <div class="phase-line"></div>
-        </div>
-        <div class="phase-content">
-          <p class="phase-title">Phase 6 — Business Design</p>
-          <p class="phase-desc">Business model canvas, value proposition, customer journey — AgriVerse gets redefined here.</p>
-        </div>
-      </div>
-
-      <div class="phase-row">
-        <div class="phase-left">
-          <div class="phase-dot"></div>
-          <div class="phase-line"></div>
-        </div>
-        <div class="phase-content">
-          <p class="phase-title">Phase 7 — Operations & Project Management</p>
-          <p class="phase-desc">Documentation, SOPs, Notion, Trello — building systems that scale.</p>
-        </div>
-      </div>
-
-      <div class="phase-row">
-        <div class="phase-left">
-          <div class="phase-dot"></div>
-          <div class="phase-line"></div>
-        </div>
-        <div class="phase-content">
-          <p class="phase-title">Phase 8 — Sales & Marketing</p>
-          <p class="phase-desc">Sales fundamentals, negotiation, marketing, partnerships. Acquire first users.</p>
+        <div class="phase-detail">
+          <div class="phase-detail-inner">
+            <div class="detail-col">
+              <h4>What you'll do</h4>
+              <ul>
+                <li>Build a basic spreadsheet tracking research findings</li>
+                <li>Create a simple dashboard for venture metrics</li>
+                <li>Identify the 3-5 KPIs that matter most for AgriVerse</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll study</h4>
+              <ul>
+                <li>Excel and Google Sheets fundamentals</li>
+                <li>What KPIs are and how to choose them</li>
+                <li>How to read trends and spot patterns in data</li>
+                <li>Common decision-making biases to avoid</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll produce</h4>
+              <ul>
+                <li>A working Google Sheets tracker for venture data</li>
+                <li>A KPI list with definitions and targets</li>
+                <li>One data-driven decision made for the venture</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="phase-row">
-        <div class="phase-left">
-          <div class="phase-dot"></div>
-          <div class="phase-line"></div>
+      <div>
+        <div class="phase-card" onclick="togglePhase(this)">
+          <div class="phase-card-header">
+            <div class="phase-card-left">
+              <p class="phase-tag">Phase 5</p>
+              <p class="phase-title">Technology & AI</p>
+              <p class="phase-desc">Software literacy, AI tools, automation workflows.</p>
+            </div>
+            <div class="phase-toggle">+</div>
+          </div>
         </div>
-        <div class="phase-content">
-          <p class="phase-title">Phase 9 — Finance</p>
-          <p class="phase-desc">Revenue, profit, cash flow, financial modeling, fundraising.</p>
+        <div class="phase-detail">
+          <div class="phase-detail-inner">
+            <div class="detail-col">
+              <h4>What you'll do</h4>
+              <ul>
+                <li>Use ChatGPT, Claude, and Perplexity for real research tasks</li>
+                <li>Map out what technology AgriVerse will need to function</li>
+                <li>Identify one manual process that could be automated</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll study</h4>
+              <ul>
+                <li>How websites, databases, and APIs work (understand, not build)</li>
+                <li>What LLMs are, what they can and can't do</li>
+                <li>AI use cases: research, documentation, analysis</li>
+                <li>When to automate and when not to</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll produce</h4>
+              <ul>
+                <li>An AI-assisted research report on the AgriVerse market</li>
+                <li>A technology requirements overview for the venture</li>
+                <li>One documented AI workflow used by the team</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="phase-row">
-        <div class="phase-left">
-          <div class="phase-dot"></div>
+      <div>
+        <div class="phase-card" onclick="togglePhase(this)">
+          <div class="phase-card-header">
+            <div class="phase-card-left">
+              <p class="phase-tag">Phase 6</p>
+              <p class="phase-title">Business Design</p>
+              <p class="phase-desc">Business model canvas, value proposition — AgriVerse gets rebuilt here.</p>
+            </div>
+            <div class="phase-toggle">+</div>
+          </div>
         </div>
-        <div class="phase-content">
-          <p class="phase-title">Phase 10 — Build & Launch</p>
-          <p class="phase-desc">MVP design, build, user testing, launch. We build only after understanding.</p>
+        <div class="phase-detail">
+          <div class="phase-detail-inner">
+            <div class="detail-col">
+              <h4>What you'll do</h4>
+              <ul>
+                <li>Complete a full Business Model Canvas for AgriVerse</li>
+                <li>Map the customer journey from awareness to purchase</li>
+                <li>Define AgriVerse's positioning against competitors</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll study</h4>
+              <ul>
+                <li>Business Model Canvas framework</li>
+                <li>Value Proposition Design</li>
+                <li>Customer journey mapping</li>
+                <li>Positioning and differentiation</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll produce</h4>
+              <ul>
+                <li>AgriVerse v2 — mission, vision, business model, customer segments, revenue streams</li>
+                <li>A completed value proposition statement</li>
+                <li>A customer journey map</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="phase-card" onclick="togglePhase(this)">
+          <div class="phase-card-header">
+            <div class="phase-card-left">
+              <p class="phase-tag">Phase 7</p>
+              <p class="phase-title">Operations & Project Management</p>
+              <p class="phase-desc">Documentation, SOPs, Notion, Trello — how businesses actually run.</p>
+            </div>
+            <div class="phase-toggle">+</div>
+          </div>
+        </div>
+        <div class="phase-detail">
+          <div class="phase-detail-inner">
+            <div class="detail-col">
+              <h4>What you'll do</h4>
+              <ul>
+                <li>Set up a Notion workspace for the venture</li>
+                <li>Write SOPs for at least two recurring team processes</li>
+                <li>Build a project board tracking all active tasks</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll study</h4>
+              <ul>
+                <li>How to write standard operating procedures</li>
+                <li>Project management fundamentals</li>
+                <li>Notion and Trello as operational tools</li>
+                <li>How documentation prevents repeated mistakes</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll produce</h4>
+              <ul>
+                <li>A live Notion workspace with team documentation</li>
+                <li>Two written SOPs</li>
+                <li>A project board with assigned owners and deadlines</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="phase-card" onclick="togglePhase(this)">
+          <div class="phase-card-header">
+            <div class="phase-card-left">
+              <p class="phase-tag">Phase 8</p>
+              <p class="phase-title">Sales & Marketing</p>
+              <p class="phase-desc">Sales fundamentals, negotiation, marketing, partnerships.</p>
+            </div>
+            <div class="phase-toggle">+</div>
+          </div>
+        </div>
+        <div class="phase-detail">
+          <div class="phase-detail-inner">
+            <div class="detail-col">
+              <h4>What you'll do</h4>
+              <ul>
+                <li>Attempt to acquire the first paying customer or user</li>
+                <li>Run one sales conversation and debrief the team on it</li>
+                <li>Identify one potential partner and draft an outreach message</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll study</h4>
+              <ul>
+                <li>Sales fundamentals — how to have a sales conversation</li>
+                <li>Negotiation principles</li>
+                <li>Marketing basics — who to reach and how</li>
+                <li>Partnership identification and outreach</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll produce</h4>
+              <ul>
+                <li>A sales conversation log with outcomes</li>
+                <li>A basic marketing plan for initial customer acquisition</li>
+                <li>One documented partnership outreach attempt</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="phase-card" onclick="togglePhase(this)">
+          <div class="phase-card-header">
+            <div class="phase-card-left">
+              <p class="phase-tag">Phase 9</p>
+              <p class="phase-title">Finance</p>
+              <p class="phase-desc">Revenue, profit, cash flow, financial modeling, fundraising.</p>
+            </div>
+            <div class="phase-toggle">+</div>
+          </div>
+        </div>
+        <div class="phase-detail">
+          <div class="phase-detail-inner">
+            <div class="detail-col">
+              <h4>What you'll do</h4>
+              <ul>
+                <li>Build a basic 12-month financial model for AgriVerse</li>
+                <li>Calculate the break-even point</li>
+                <li>Research one relevant grant or investor type</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll study</h4>
+              <ul>
+                <li>Revenue vs profit vs cash flow — the real differences</li>
+                <li>How to build a simple financial model in spreadsheets</li>
+                <li>Fundraising options: grants, angels, accelerators</li>
+                <li>How to pitch to investors</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll produce</h4>
+              <ul>
+                <li>A 12-month financial model</li>
+                <li>A break-even analysis</li>
+                <li>A one-page funding overview for AgriVerse</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="phase-card" onclick="togglePhase(this)">
+          <div class="phase-card-header">
+            <div class="phase-card-left">
+              <p class="phase-tag">Phase 10</p>
+              <p class="phase-title">Build & Launch</p>
+              <p class="phase-desc">MVP design, build, user testing, launch. We build only after understanding.</p>
+            </div>
+            <div class="phase-toggle">+</div>
+          </div>
+        </div>
+        <div class="phase-detail">
+          <div class="phase-detail-inner">
+            <div class="detail-col">
+              <h4>What you'll do</h4>
+              <ul>
+                <li>Design the MVP based on everything validated so far</li>
+                <li>Build and test it with real users</li>
+                <li>Execute a structured launch with a defined target audience</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll study</h4>
+              <ul>
+                <li>MVP design principles — what to include and what to cut</li>
+                <li>User testing and feedback collection</li>
+                <li>Launch planning and execution</li>
+                <li>How to iterate based on real data</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>What you'll produce</h4>
+              <ul>
+                <li>A working MVP</li>
+                <li>A user testing report with findings</li>
+                <li>A completed launch — real users, real feedback</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -876,7 +1083,6 @@
   <p class="section-eyebrow">Accountability</p>
   <h2 class="section-heading">The Founder Forum</h2>
   <p class="section-body">Every week, every member reports. Not to a manager — to each other. The Forum is how we stay honest, surface problems early, and build the habit of consistent communication.</p>
-
   <div class="forum-grid">
     <div class="forum-block">
       <h3>Each member reports</h3>
@@ -897,7 +1103,6 @@
       </ul>
     </div>
   </div>
-
   <div class="honest-box">
     <h3>Let's be honest about what this is</h3>
     <div class="honest-cols">
@@ -932,6 +1137,15 @@
   <p class="final-body">The goal of FDOS is not to launch a company. It is to become the kind of people who can build companies — repeatedly, in any context, on any opportunity. That is what we are doing here.</p>
   <p class="version-tag">FDOS Version 1.0 — Founder Development Operating System</p>
 </div>
+
+<script>
+  function togglePhase(card) {
+    const detail = card.nextElementSibling;
+    const isOpen = card.classList.contains('open');
+    card.classList.toggle('open', !isOpen);
+    detail.classList.toggle('expanded', !isOpen);
+  }
+</script>
 
 </body>
 </html>
