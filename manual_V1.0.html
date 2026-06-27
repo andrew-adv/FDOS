@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FDOS Curriculum Manual — Phases 0, 1 & 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f0f0f;
+    --surface: #171717;
+    --surface2: #1f1f1f;
+    --border: #2a2a2a;
+    --mid: #555;
+    --muted: #888;
+    --text: #e8e6e0;
+    --text-dim: #aaa;
+    --accent: #c8f135;
+    --accent-dim: #8aaa1f;
+    --blue: #7eb8f7;
+    --orange: #f7a35e;
+    --phase0: #c8f135;
+    --phase1: #7eb8f7;
+    --phase2: #f7a35e;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(15,15,15,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-left { display: flex; align-items: center; gap: 1.2rem; }
+  .nav-logo {
+    font-family: 'IBM Plex Mono', monospace; font-weight: 500;
+    font-size: 0.85rem; color: var(--accent); letter-spacing: 0.06em;
+  }
+  .nav-tag {
+    font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em;
+    text-transform: uppercase; border-left: 1px solid var(--border); padding-left: 1.2rem;
+  }
+  .nav-phases { display: flex; gap: 0.5rem; }
+  .nav-phase {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem;
+    padding: 0.3rem 0.7rem; border: 1px solid var(--border);
+    text-decoration: none; color: var(--muted); transition: all 0.2s;
+  }
+  .nav-phase:hover { border-color: var(--accent); color: var(--accent); }
+  .nav-phase.p0 { border-color: var(--phase0); color: var(--phase0); }
+  .nav-phase.p1 { border-color: var(--phase1); color: var(--phase1); }
+  .nav-phase.p2 { border-color: var(--phase2); color: var(--phase2); }
+
+  /* COVER */
+  .cover {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 8rem 2.5rem 4rem; max-width: 1100px; margin: 0 auto;
+    border-right: 1px solid var(--border);
+  }
+  .cover-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem;
+    color: var(--muted); letter-spacing: 0.1em; margin-bottom: 2rem;
+  }
+  .cover-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 1.5rem;
+  }
+  .cover-title span { color: var(--accent); }
+  .cover-sub {
+    font-size: 1.05rem; color: var(--text-dim); max-width: 55ch; line-height: 1.8; margin-bottom: 3rem;
+  }
+  .cover-phases { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .cover-phase-pill {
+    padding: 0.5rem 1.1rem; border: 1px solid;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; font-weight: 500;
+  }
+  .cover-phase-pill.p0 { border-color: var(--phase0); color: var(--phase0); }
+  .cover-phase-pill.p1 { border-color: var(--phase1); color: var(--phase1); }
+  .cover-phase-pill.p2 { border-color: var(--phase2); color: var(--phase2); }
+  .cover-scroll {
+    margin-top: 4rem; font-size: 0.72rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--mid); display: flex; align-items: center; gap: 0.8rem;
+  }
+  .cover-scroll::before { content: ''; width: 32px; height: 1px; background: var(--mid); display: block; }
+
+  /* PHASE WRAPPER */
+  .phase-wrapper { max-width: 1100px; margin: 0 auto; border-right: 1px solid var(--border); }
+
+  /* PHASE HEADER */
+  .phase-header {
+    padding: 5rem 2.5rem 3rem;
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .phase-header::before {
+    content: attr(data-phase);
+    position: absolute; right: -0.02em; top: -0.15em;
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(7rem, 18vw, 14rem);
+    line-height: 1; opacity: 0.04; pointer-events: none;
+    letter-spacing: -0.04em;
+  }
+  .phase-eyebrow {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.1em; margin-bottom: 1rem;
+  }
+  .phase-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.5rem;
+  }
+  .phase-meta-row {
+    display: flex; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 2rem;
+  }
+  .phase-meta { display: flex; flex-direction: column; gap: 0.2rem; }
+  .phase-meta-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  }
+  .phase-meta-value { font-size: 0.95rem; font-weight: 500; }
+  .phase-goal {
+    background: var(--surface); border-left: 3px solid;
+    padding: 1.2rem 1.4rem; max-width: 65ch; font-size: 0.95rem;
+    color: var(--text-dim); line-height: 1.75;
+  }
+
+  /* WEEK */
+  .week-section { border-bottom: 1px solid var(--border); }
+  .week-header {
+    padding: 1.8rem 2.5rem;
+    display: flex; align-items: center; gap: 1.5rem;
+    cursor: pointer; user-select: none;
+    background: var(--surface); transition: background 0.15s;
+    border-bottom: 1px solid transparent;
+  }
+  .week-header:hover { background: var(--surface2); }
+  .week-header.open { background: var(--surface2); border-bottom-color: var(--border); }
+  .week-num {
+    font-family: 'IBM Plex Mono', monospace; font-weight: 500;
+    font-size: 0.72rem; letter-spacing: 0.08em; min-width: 4rem;
+  }
+  .week-title-block { flex: 1; }
+  .week-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; }
+  .week-subtitle { font-size: 0.83rem; color: var(--muted); margin-top: 0.15rem; }
+  .week-toggle {
+    font-family: 'IBM Plex Mono', monospace; font-size: 1rem;
+    color: var(--muted); transition: transform 0.25s; flex-shrink: 0;
+  }
+  .week-header.open .week-toggle { transform: rotate(45deg); }
+
+  /* WEEK BODY */
+  .week-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .week-body.open { max-height: 2000px; }
+  .week-body-inner { padding: 2rem 2.5rem; display: flex; flex-direction: column; gap: 2rem; }
+
+  /* CONTENT BLOCKS */
+  .content-block { display: flex; flex-direction: column; gap: 0.6rem; }
+  .content-block-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem;
+    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+    margin-bottom: 0.2rem;
+  }
+
+  /* Task list */
+  .task-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .task-item {
+    display: flex; gap: 0.9rem; align-items: flex-start;
+    padding: 0.7rem 0.9rem; background: var(--surface);
+    border: 1px solid var(--border); font-size: 0.9rem;
+    color: var(--text-dim); line-height: 1.6;
+  }
+  .task-check {
+    width: 16px; height: 16px; border: 1px solid var(--border);
+    flex-shrink: 0; margin-top: 0.2rem;
+  }
+
+  /* Resource list */
+  .resource-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .resource-item {
+    display: flex; align-items: flex-start; gap: 0.8rem;
+    padding: 0.8rem 0.9rem; background: var(--surface); border: 1px solid var(--border);
+  }
+  .resource-type {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem;
+    font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.2rem 0.5rem; flex-shrink: 0; margin-top: 0.1rem;
+  }
+  .resource-type.book { background: rgba(200,241,53,0.12); color: var(--accent); }
+  .resource-type.video { background: rgba(247,163,94,0.12); color: var(--orange); }
+  .resource-type.tool { background: rgba(126,184,247,0.12); color: var(--blue); }
+  .resource-type.article { background: rgba(200,200,200,0.1); color: var(--muted); }
+  .resource-name { font-size: 0.88rem; color: var(--text); font-weight: 400; line-height: 1.5; }
+  .resource-note { font-size: 0.78rem; color: var(--muted); margin-top: 0.15rem; }
+
+  /* Deliverable */
+  .deliverable-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .deliverable-item {
+    display: flex; gap: 0.8rem; align-items: flex-start;
+    padding: 0.8rem 0.9rem; border: 1px solid; font-size: 0.9rem; line-height: 1.6;
+  }
+  .deliverable-item::before { content: '↗'; flex-shrink: 0; font-size: 0.85rem; margin-top: 0.1rem; }
+
+  /* Forum box */
+  .forum-box {
+    border: 1px solid var(--border); background: var(--surface);
+    padding: 1.2rem 1.4rem;
+  }
+  .forum-box-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+  .forum-prompts { display: flex; flex-direction: column; gap: 0.4rem; }
+  .forum-prompt {
+    font-size: 0.88rem; color: var(--text-dim); display: flex; gap: 0.6rem; align-items: flex-start;
+  }
+  .forum-prompt::before { content: '›'; color: var(--muted); flex-shrink: 0; }
+
+  /* Phase divider */
+  .phase-divider {
+    border: none; border-top: 1px solid var(--border);
+    margin: 0; height: 4px;
+  }
+
+  /* Color overrides per phase */
+  .p0 .phase-eyebrow { color: var(--phase0); }
+  .p0 .phase-goal { border-color: var(--phase0); }
+  .p0 .week-num { color: var(--phase0); }
+  .p0 .content-block-label { color: var(--phase0); }
+  .p0 .deliverable-item { border-color: rgba(200,241,53,0.25); color: var(--text-dim); background: rgba(200,241,53,0.04); }
+  .p0 .deliverable-item::before { color: var(--phase0); }
+
+  .p1 .phase-eyebrow { color: var(--phase1); }
+  .p1 .phase-goal { border-color: var(--phase1); }
+  .p1 .week-num { color: var(--phase1); }
+  .p1 .content-block-label { color: var(--phase1); }
+  .p1 .deliverable-item { border-color: rgba(126,184,247,0.25); color: var(--text-dim); background: rgba(126,184,247,0.04); }
+  .p1 .deliverable-item::before { color: var(--phase1); }
+
+  .p2 .phase-eyebrow { color: var(--phase2); }
+  .p2 .phase-goal { border-color: var(--phase2); }
+  .p2 .week-num { color: var(--phase2); }
+  .p2 .content-block-label { color: var(--phase2); }
+  .p2 .deliverable-item { border-color: rgba(247,163,94,0.25); color: var(--text-dim); background: rgba(247,163,94,0.04); }
+  .p2 .deliverable-item::before { color: var(--phase2); }
+
+  /* Gate */
+  .gate-section {
+    padding: 3rem 2.5rem; border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .gate-inner {
+    border: 1px solid var(--accent); padding: 2rem; max-width: 700px;
+  }
+  .gate-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+  }
+  .gate-title {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; margin-bottom: 1.2rem;
+  }
+  .gate-qs { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+  .gate-q {
+    font-size: 0.9rem; color: var(--text-dim); display: flex; gap: 0.7rem; align-items: flex-start;
+  }
+  .gate-q::before { content: '?'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+  .gate-note {
+    font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 1rem;
+  }
+
+  /* Footer */
+  .manual-footer {
+    padding: 4rem 2.5rem; border-top: 1px solid var(--border);
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; color: var(--accent);
+  }
+  .footer-note { font-size: 0.78rem; color: var(--muted); }
+
+  @media (max-width: 640px) {
+    .cover, .phase-header, .week-body-inner, .week-header, .gate-section { padding-left: 1.2rem; padding-right: 1.2rem; }
+    nav { padding: 0.8rem 1.2rem; }
+    .nav-phases { display: none; }
+    .nav-tag { display: none; }
+    .phase-meta-row { gap: 1.5rem; }
+    .manual-footer { padding: 2rem 1.2rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <span class="nav-logo">FDOS / MANUAL</span>
+    <span class="nav-tag">Curriculum — Phases 0–2</span>
+  </div>
+  <div class="nav-phases">
+    <a class="nav-phase p0" href="#phase0">Phase 0</a>
+    <a class="nav-phase p1" href="#phase1">Phase 1</a>
+    <a class="nav-phase p2" href="#phase2">Phase 2</a>
+  </div>
+</nav>
+
+<!-- COVER -->
+<div class="cover">
+  <p class="cover-label">FDOS — Founder Development Operating System / Curriculum Manual v1.0</p>
+  <h1 class="cover-title">The first<br><span>eight weeks.</span></h1>
+  <p class="cover-sub">This manual covers Phases 0 through 2. It tells you exactly what to do each week — what to read, what to produce, and what to bring to the Founder Forum. No guessing. No searching for where to start.</p>
+  <div class="cover-phases">
+    <span class="cover-phase-pill p0">Phase 0 — Founder Readiness — 2 Weeks</span>
+    <span class="cover-phase-pill p1">Phase 1 — Thinking & Communication — 4 Weeks (parallel)</span>
+    <span class="cover-phase-pill p2">Phase 2 — Business Foundations — 4 Weeks</span>
+  </div>
+  <p class="cover-scroll">Tap any week to expand</p>
+</div>
+
+<!-- ==================== PHASE 0 ==================== -->
+<div class="phase-wrapper p0" id="phase0">
+  <div class="phase-header" data-phase="0">
+    <p class="phase-eyebrow">Phase 0 — Weeks 1 & 2 (parallel with Phase 1)</p>
+    <h2 class="phase-title">Founder Readiness</h2>
+    <div class="phase-meta-row">
+      <div class="phase-meta">
+        <span class="phase-meta-label">Duration</span>
+        <span class="phase-meta-value">2 Weeks</span>
+      </div>
+      <div class="phase-meta">
+        <span class="phase-meta-label">Runs With</span>
+        <span class="phase-meta-value">Phase 1</span>
+      </div>
+      <div class="phase-meta">
+        <span class="phase-meta-label">Focus</span>
+        <span class="phase-meta-value">Standards & Setup</span>
+      </div>
+    </div>
+    <div class="phase-goal">
+      The goal of Phase 0 is simple: establish that this is real. Not a WhatsApp group with good intentions — a working group with standards. By the end of Week 2, every member should be set up, accounted for, and have demonstrated they can show up consistently.
+    </div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-section">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <span class="week-num">WEEK 01</span>
+      <div class="week-title-block">
+        <p class="week-title">Setup & Standards</p>
+        <p class="week-subtitle">Get the basics in place. No excuses, no delays.</p>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body">
+      <div class="week-body-inner">
+
+        <div class="content-block">
+          <p class="content-block-label">Tasks This Week</p>
+          <div class="task-list">
+            <div class="task-item"><div class="task-check"></div>Create a dedicated business email address (firstname.lastname@gmail.com or similar — no nicknames)</div>
+            <div class="task-item"><div class="task-check"></div>Share that email with the group so everyone has each other's professional contact</div>
+            <div class="task-item"><div class="task-check"></div>Acquire or designate a business contact number — this is the number you respond to within 24 hours</div>
+            <div class="task-item"><div class="task-check"></div>Submit your weekly availability: the days and hours you can commit to FDOS work each week</div>
+            <div class="task-item"><div class="task-check"></div>Confirm the fixed weekly meeting day and time with the full group</div>
+            <div class="task-item"><div class="task-check"></div>Read: What is an ownership mindset? (see resources below) — come to the Forum ready to discuss</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Resources</p>
+          <div class="resource-list">
+            <div class="resource-item">
+              <span class="resource-type book">Book</span>
+              <div>
+                <p class="resource-name">The War of Art — Steven Pressfield</p>
+                <p class="resource-note">Read Part 1 only this week (pages 1–65). It's short. It's about resistance — the force that makes people not follow through. Relevant to exactly what this group is working against.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type video">Video</span>
+              <div>
+                <p class="resource-name">Ownership vs Victimhood Mindset — search "Jocko Willink Extreme Ownership" on YouTube</p>
+                <p class="resource-note">Watch any clip under 15 minutes. The concept matters more than the specific video.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type tool">Tool</span>
+              <div>
+                <p class="resource-name">Google Workspace — gmail.com</p>
+                <p class="resource-note">Free. Create your business email here. Also set up Google Calendar and share your availability with the group.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Deliverables</p>
+          <div class="deliverable-list">
+            <div class="deliverable-item">Business email address created and shared with the group</div>
+            <div class="deliverable-item">Weekly availability submitted in writing (WhatsApp or wherever the group communicates)</div>
+            <div class="deliverable-item">Fixed meeting day and time agreed by the full group</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Founder Forum — Week 1 Prompts</p>
+          <div class="forum-box">
+            <p class="forum-box-label">Each member answers these at the weekly meeting</p>
+            <div class="forum-prompts">
+              <p class="forum-prompt">What did you complete from this week's task list?</p>
+              <p class="forum-prompt">What does "ownership mindset" mean to you — in your own words?</p>
+              <p class="forum-prompt">What is one thing that could realistically stop you from showing up consistently to this program?</p>
+              <p class="forum-prompt">What do you need from the group to make this work?</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-section">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <span class="week-num">WEEK 02</span>
+      <div class="week-title-block">
+        <p class="week-title">Communication Standards</p>
+        <p class="week-subtitle">Define how this group communicates — and hold to it.</p>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body">
+      <div class="week-body-inner">
+
+        <div class="content-block">
+          <p class="content-block-label">Tasks This Week</p>
+          <div class="task-list">
+            <div class="task-item"><div class="task-check"></div>As a group, agree on and write down the communication rules: response time expectation, how to signal you'll be absent, how to raise a problem</div>
+            <div class="task-item"><div class="task-check"></div>Practice writing a professional email — pick any topic, write it, and share it with the group for feedback</div>
+            <div class="task-item"><div class="task-check"></div>Write a summary of last week's Founder Forum meeting — 150 to 200 words. What was discussed, what was decided, what are the open questions</div>
+            <div class="task-item"><div class="task-check"></div>Decide on the group's main workspace platform (Notion, Discord, or other) — bring a 2-minute case for your preference to the Forum</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Resources</p>
+          <div class="resource-list">
+            <div class="resource-item">
+              <span class="resource-type video">Video</span>
+              <div>
+                <p class="resource-name">How to Write a Professional Email — search "professional email writing tips" on YouTube</p>
+                <p class="resource-note">Any video under 10 minutes. Focus on structure: subject line, opening, body, close.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type article">Article</span>
+              <div>
+                <p class="resource-name">Meeting Notes 101 — search "how to write meeting minutes" on Google</p>
+                <p class="resource-note">Read one short article. You'll be writing a meeting summary this week, so understand the format before you start.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type tool">Tool</span>
+              <div>
+                <p class="resource-name">Notion (notion.so) — free plan</p>
+                <p class="resource-note">If the group chooses Notion, create a free workspace this week and add all members. Start a simple page for team agreements and contact information.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Deliverables</p>
+          <div class="deliverable-list">
+            <div class="deliverable-item">Group communication rules written down and agreed — not just discussed verbally</div>
+            <div class="deliverable-item">One professional email written and shared with the group</div>
+            <div class="deliverable-item">Week 1 meeting summary written (150–200 words)</div>
+            <div class="deliverable-item">Platform decision made and workspace created</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Founder Forum — Week 2 Prompts</p>
+          <div class="forum-box">
+            <p class="forum-box-label">Each member answers these at the weekly meeting</p>
+            <div class="forum-prompts">
+              <p class="forum-prompt">What did you complete from this week's task list?</p>
+              <p class="forum-prompt">What did you find difficult — and did you push through or avoid it?</p>
+              <p class="forum-prompt">Present your 2-minute platform recommendation — Notion, Discord, or other. Give one reason for and one against.</p>
+              <p class="forum-prompt">What is one professional communication habit you want to build through this program?</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="phase-divider">
+
+<!-- ==================== PHASE 1 ==================== -->
+<div class="phase-wrapper p1" id="phase1">
+  <div class="phase-header" data-phase="1">
+    <p class="phase-eyebrow">Phase 1 — Weeks 1–4 (parallel with Phase 0 in Weeks 1–2)</p>
+    <h2 class="phase-title">Thinking & Communication</h2>
+    <div class="phase-meta-row">
+      <div class="phase-meta">
+        <span class="phase-meta-label">Duration</span>
+        <span class="phase-meta-value">4 Weeks</span>
+      </div>
+      <div class="phase-meta">
+        <span class="phase-meta-label">Parallel With</span>
+        <span class="phase-meta-value">Phase 0 (Wks 1–2)</span>
+      </div>
+      <div class="phase-meta">
+        <span class="phase-meta-label">Focus</span>
+        <span class="phase-meta-value">Thinking & Expression</span>
+      </div>
+    </div>
+    <div class="phase-goal">
+      By the end of Phase 1, every member should be able to speak clearly in a structured setting, write a professional document, ask questions that extract real information, and think through a problem without jumping to conclusions. These are not soft skills — they are the operating layer everything else runs on.
+    </div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-section">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <span class="week-num">WEEK 01</span>
+      <div class="week-title-block">
+        <p class="week-title">How to Think Clearly</p>
+        <p class="week-subtitle">First principles, critical thinking, and reasoning from evidence.</p>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body">
+      <div class="week-body-inner">
+
+        <div class="content-block">
+          <p class="content-block-label">Tasks This Week</p>
+          <div class="task-list">
+            <div class="task-item"><div class="task-check"></div>Watch the Farnam Street video on First Principles Thinking (see resources)</div>
+            <div class="task-item"><div class="task-check"></div>Pick one belief you have about AgriVerse or the agriculture space and break it down to first principles — what do you actually know vs what are you assuming?</div>
+            <div class="task-item"><div class="task-check"></div>Write a 200-word reflection: "What is the difference between an assumption and a fact?" Use one example from your own thinking</div>
+            <div class="task-item"><div class="task-check"></div>Prepare a 2-minute verbal explanation of first principles thinking to present at the Forum — as if explaining it to someone who has never heard of it</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Resources</p>
+          <div class="resource-list">
+            <div class="resource-item">
+              <span class="resource-type video">Video</span>
+              <div>
+                <p class="resource-name">First Principles: Elon Musk's Framework for Thinking — Farnam Street (YouTube)</p>
+                <p class="resource-note">Search "Farnam Street first principles thinking" on YouTube. Watch the full video — it is under 10 minutes.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type video">Video</span>
+              <div>
+                <p class="resource-name">How to Think for Yourself — search "critical thinking explained simply" on YouTube</p>
+                <p class="resource-note">Pick any result under 15 minutes that resonates. The concept is more important than the specific presenter.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type article">Article</span>
+              <div>
+                <p class="resource-name">Mental Models — Farnam Street (fs.blog/mental-models)</p>
+                <p class="resource-note">Don't read everything. Read the introduction and pick two mental models that interest you. Bring them to the Forum.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Deliverables</p>
+          <div class="deliverable-list">
+            <div class="deliverable-item">200-word written reflection on assumptions vs facts</div>
+            <div class="deliverable-item">First principles breakdown of one AgriVerse belief</div>
+            <div class="deliverable-item">2-minute Forum presentation on first principles thinking</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Founder Forum — Week 1 Prompts</p>
+          <div class="forum-box">
+            <p class="forum-box-label">Each member answers these at the weekly meeting</p>
+            <div class="forum-prompts">
+              <p class="forum-prompt">Present your 2-minute explanation of first principles thinking</p>
+              <p class="forum-prompt">What assumption about AgriVerse did you break down — and what did you find underneath it?</p>
+              <p class="forum-prompt">What two mental models did you read about? Would you use either of them — and when?</p>
+              <p class="forum-prompt">What challenged your thinking most this week?</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-section">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <span class="week-num">WEEK 02</span>
+      <div class="week-title-block">
+        <p class="week-title">Speaking & Presenting</p>
+        <p class="week-subtitle">Structured delivery, clarity under pressure, active listening.</p>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body">
+      <div class="week-body-inner">
+
+        <div class="content-block">
+          <p class="content-block-label">Tasks This Week</p>
+          <div class="task-list">
+            <div class="task-item"><div class="task-check"></div>Read Chapters 1–3 of Talk Like TED by Carmine Gallo — focus on the concept of delivering one clear idea per talk</div>
+            <div class="task-item"><div class="task-check"></div>Prepare and deliver a 3-minute presentation at the Forum on any topic you know well — could be a hobby, a skill, anything. The topic is not important. The structure is.</div>
+            <div class="task-item"><div class="task-check"></div>After each team member presents, write three sentences: one thing they did well, one thing that could be clearer, one question their talk raised for you</div>
+            <div class="task-item"><div class="task-check"></div>Practise active listening during this week's meetings: take notes, do not interrupt, summarize what you heard before responding</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Resources</p>
+          <div class="resource-list">
+            <div class="resource-item">
+              <span class="resource-type book">Book</span>
+              <div>
+                <p class="resource-name">Talk Like TED — Carmine Gallo</p>
+                <p class="resource-note">Chapters 1–3 this week. Focus on: one idea, emotional connection, and why stories land harder than facts alone.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type video">Video</span>
+              <div>
+                <p class="resource-name">The Art of Active Listening — search "active listening skills" on YouTube</p>
+                <p class="resource-note">Any video under 10 minutes. Then practice it deliberately this week in every group conversation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Deliverables</p>
+          <div class="deliverable-list">
+            <div class="deliverable-item">3-minute presentation delivered at the Founder Forum</div>
+            <div class="deliverable-item">Written feedback given on each other member's presentation (3 sentences each)</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Founder Forum — Week 2 Prompts</p>
+          <div class="forum-box">
+            <p class="forum-box-label">Each member answers these at the weekly meeting</p>
+            <div class="forum-prompts">
+              <p class="forum-prompt">Deliver your 3-minute presentation</p>
+              <p class="forum-prompt">Give your written feedback on each other member's talk</p>
+              <p class="forum-prompt">What from Talk Like TED chapters 1–3 surprised you or changed how you think about communication?</p>
+              <p class="forum-prompt">Did you practice active listening this week? Where, and what did you notice?</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div class="week-section">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <span class="week-num">WEEK 03</span>
+      <div class="week-title-block">
+        <p class="week-title">Professional Writing</p>
+        <p class="week-subtitle">Emails, memos, and reports that get read and acted on.</p>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body">
+      <div class="week-body-inner">
+
+        <div class="content-block">
+          <p class="content-block-label">Tasks This Week</p>
+          <div class="task-list">
+            <div class="task-item"><div class="task-check"></div>Write a formal business email to a fictional potential partner for AgriVerse — introduce who you are, what you're building, and why you want to connect</div>
+            <div class="task-item"><div class="task-check"></div>Write a one-page executive summary of FDOS — what it is, why it exists, and what the group is trying to accomplish. Write it as if a stranger will read it</div>
+            <div class="task-item"><div class="task-check"></div>Review each other's email and executive summary — give written feedback focused on: clarity, tone, and whether the purpose is immediately obvious</div>
+            <div class="task-item"><div class="task-check"></div>Rewrite your email or summary based on the feedback you received</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Resources</p>
+          <div class="resource-list">
+            <div class="resource-item">
+              <span class="resource-type article">Article</span>
+              <div>
+                <p class="resource-name">How to Write an Executive Summary — search "executive summary format business" on Google</p>
+                <p class="resource-note">Read one short article or guide before starting. A good executive summary is half a page to one page. It answers: what, why, and what's next.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type tool">Tool</span>
+              <div>
+                <p class="resource-name">Google Docs — docs.google.com</p>
+                <p class="resource-note">Write all documents here. Use the "Suggesting" mode to give and receive edits from team members without overwriting each other's work.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Deliverables</p>
+          <div class="deliverable-list">
+            <div class="deliverable-item">One business email — draft and revised version</div>
+            <div class="deliverable-item">One executive summary of FDOS — draft and revised version</div>
+            <div class="deliverable-item">Written feedback provided to each team member on their documents</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Founder Forum — Week 3 Prompts</p>
+          <div class="forum-box">
+            <p class="forum-box-label">Each member answers these at the weekly meeting</p>
+            <div class="forum-prompts">
+              <p class="forum-prompt">Read your business email aloud to the group. The group gives verbal feedback before you share the written version.</p>
+              <p class="forum-prompt">What was the hardest part of writing clearly this week?</p>
+              <p class="forum-prompt">What did the feedback on your writing reveal about how you communicate?</p>
+              <p class="forum-prompt">What will you change about how you write after this week?</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div class="week-section">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <span class="week-num">WEEK 04</span>
+      <div class="week-title-block">
+        <p class="week-title">Asking Better Questions</p>
+        <p class="week-subtitle">The Mom Test method — how to extract truth from a conversation.</p>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body">
+      <div class="week-body-inner">
+
+        <div class="content-block">
+          <p class="content-block-label">Tasks This Week</p>
+          <div class="task-list">
+            <div class="task-item"><div class="task-check"></div>Read The Mom Test by Rob Fitzpatrick — it's short (around 130 pages). Read the whole book this week.</div>
+            <div class="task-item"><div class="task-check"></div>Run one mock customer interview with another team member — one person plays the interviewer, one plays a potential AgriVerse customer. Then swap.</div>
+            <div class="task-item"><div class="task-check"></div>After your mock interview, write a half-page summary: what questions worked, what questions got you opinions instead of facts, what you would ask differently next time</div>
+            <div class="task-item"><div class="task-check"></div>Write a list of 10 questions you would ask a real farmer or agricultural business to understand their problems — then review them against The Mom Test criteria</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Resources</p>
+          <div class="resource-list">
+            <div class="resource-item">
+              <span class="resource-type book">Book</span>
+              <div>
+                <p class="resource-name">The Mom Test — Rob Fitzpatrick</p>
+                <p class="resource-note">Read the entire book this week. It is 130 pages and written to be read quickly. The core idea: never ask anyone if your idea is good. Ask about their life, their problems, and their behavior instead.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type video">Video</span>
+              <div>
+                <p class="resource-name">The Mom Test Summary — search "The Mom Test Rob Fitzpatrick summary" on YouTube</p>
+                <p class="resource-note">Watch a 10-minute summary before you start reading to orient yourself, then read the book fully.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Deliverables</p>
+          <div class="deliverable-list">
+            <div class="deliverable-item">The Mom Test read in full</div>
+            <div class="deliverable-item">Mock interview completed and documented (half-page reflection each)</div>
+            <div class="deliverable-item">List of 10 customer interview questions — reviewed against Mom Test principles</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Founder Forum — Week 4 Prompts</p>
+          <div class="forum-box">
+            <p class="forum-box-label">Each member answers these at the weekly meeting</p>
+            <div class="forum-prompts">
+              <p class="forum-prompt">What is the core insight of The Mom Test — in two sentences?</p>
+              <p class="forum-prompt">Share one question from your list of 10 that you think is good — and one that violates Mom Test principles. Explain both.</p>
+              <p class="forum-prompt">What happened in your mock interview that surprised you?</p>
+              <p class="forum-prompt">Are you ready to run a real customer interview? What is still making you uncertain?</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="phase-divider">
+
+<!-- ==================== PHASE 2 ==================== -->
+<div class="phase-wrapper p2" id="phase2">
+  <div class="phase-header" data-phase="2">
+    <p class="phase-eyebrow">Phase 2 — Weeks 5–8 (Assessment Gate falls mid-phase, around Week 6–7)</p>
+    <h2 class="phase-title">Business Foundations</h2>
+    <div class="phase-meta-row">
+      <div class="phase-meta">
+        <span class="phase-meta-label">Duration</span>
+        <span class="phase-meta-value">4 Weeks</span>
+      </div>
+      <div class="phase-meta">
+        <span class="phase-meta-label">Gate</span>
+        <span class="phase-meta-value">Week 6–7</span>
+      </div>
+      <div class="phase-meta">
+        <span class="phase-meta-label">Focus</span>
+        <span class="phase-meta-value">How Businesses Work</span>
+      </div>
+    </div>
+    <div class="phase-goal">
+      By the end of Phase 2, every member should understand how businesses actually create and capture value — not in theory, but by being able to look at a real company and explain its model. The Assessment Gate falls around Week 6 or 7. Whether the group passes it or not, Phase 2 still gets completed.
+    </div>
+  </div>
+
+  <!-- WEEK 5 -->
+  <div class="week-section">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <span class="week-num">WEEK 05</span>
+      <div class="week-title-block">
+        <p class="week-title">What Is a Business?</p>
+        <p class="week-subtitle">Value creation, delivery, and capture — the fundamentals.</p>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body">
+      <div class="week-body-inner">
+
+        <div class="content-block">
+          <p class="content-block-label">Tasks This Week</p>
+          <div class="task-list">
+            <div class="task-item"><div class="task-check"></div>Watch the Personal MBA core concepts video on value creation (see resources)</div>
+            <div class="task-item"><div class="task-check"></div>Pick one business you use regularly — not AgriVerse. Map out how it creates value, how it delivers that value, and how it captures money from it</div>
+            <div class="task-item"><div class="task-check"></div>Write a 300-word explanation of the business you mapped — as if explaining it to someone who has never heard of it</div>
+            <div class="task-item"><div class="task-check"></div>Try to apply the same framework to AgriVerse as it currently stands: what value would it create, for whom, how would it deliver it, how would it make money?</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Resources</p>
+          <div class="resource-list">
+            <div class="resource-item">
+              <span class="resource-type book">Book</span>
+              <div>
+                <p class="resource-name">The Personal MBA — Josh Kaufman</p>
+                <p class="resource-note">Read Chapter 1 only this week: "Value Creation." It covers the 12 forms of value and is the clearest explanation of what a business actually does.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type video">Video</span>
+              <div>
+                <p class="resource-name">How Businesses Make Money — search "value creation business model explained" on YouTube</p>
+                <p class="resource-note">Any clear video under 15 minutes. Focus on the distinction between creating, delivering, and capturing value.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Deliverables</p>
+          <div class="deliverable-list">
+            <div class="deliverable-item">300-word business breakdown (creation, delivery, capture) for one real company</div>
+            <div class="deliverable-item">Initial value map for AgriVerse — rough is fine, it will be refined in Phase 6</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Founder Forum — Week 5 Prompts</p>
+          <div class="forum-box">
+            <p class="forum-box-label">Each member answers these at the weekly meeting</p>
+            <div class="forum-prompts">
+              <p class="forum-prompt">Present the business you mapped — walk the group through how it creates, delivers, and captures value</p>
+              <p class="forum-prompt">Where does AgriVerse sit when you apply the same framework? What is still unclear?</p>
+              <p class="forum-prompt">What surprised you most about how the business you studied actually makes money?</p>
+              <p class="forum-prompt">What did you complete this week and what did you not complete?</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 6 -->
+  <div class="week-section">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <span class="week-num">WEEK 06</span>
+      <div class="week-title-block">
+        <p class="week-title">Business Models</p>
+        <p class="week-subtitle">Marketplace, subscription, commission — and which one fits AgriVerse.</p>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body">
+      <div class="week-body-inner">
+
+        <div class="content-block">
+          <p class="content-block-label">Tasks This Week</p>
+          <div class="task-list">
+            <div class="task-item"><div class="task-check"></div>Study three business models in detail: Amazon (retail + marketplace + subscription), Uber (commission marketplace), Jumia (e-commerce in African context)</div>
+            <div class="task-item"><div class="task-check"></div>For each company, write 3–4 sentences answering: who pays, who receives value, how the company takes its cut</div>
+            <div class="task-item"><div class="task-check"></div>As a group discussion: which business model type is closest to what AgriVerse is trying to do? Write down the group's answer with reasoning</div>
+            <div class="task-item"><div class="task-check"></div>Read Chapter 3 of Business Model Generation — the nine building blocks of the Business Model Canvas. You will use this tool fully in Phase 6.</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Resources</p>
+          <div class="resource-list">
+            <div class="resource-item">
+              <span class="resource-type video">Video</span>
+              <div>
+                <p class="resource-name">How Amazon Makes Money — search "Amazon business model explained" on YouTube</p>
+                <p class="resource-note">Any clear breakdown under 15 minutes. Amazon is worth studying because it runs multiple models at once.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type video">Video</span>
+              <div>
+                <p class="resource-name">How Uber Makes Money — search "Uber business model" on YouTube</p>
+                <p class="resource-note">Under 10 minutes. Focus on the two-sided marketplace structure and the commission model.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type book">Book</span>
+              <div>
+                <p class="resource-name">Business Model Generation — Alexander Osterwalder</p>
+                <p class="resource-note">Read Chapter 3 this week: the nine building blocks. Don't fill in a canvas yet — just understand what the blocks mean.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Deliverables</p>
+          <div class="deliverable-list">
+            <div class="deliverable-item">3–4 sentence business model breakdown for Amazon, Uber, and Jumia</div>
+            <div class="deliverable-item">Written group decision on AgriVerse's likely business model type — with reasoning</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Founder Forum — Week 6 Prompts</p>
+          <div class="forum-box">
+            <p class="forum-box-label">Each member answers these at the weekly meeting</p>
+            <div class="forum-prompts">
+              <p class="forum-prompt">Walk the group through one of the three companies you studied — what is their model and how does money actually flow?</p>
+              <p class="forum-prompt">What business model type does the group think AgriVerse is? Is everyone aligned, or are there different views?</p>
+              <p class="forum-prompt">What were the nine building blocks in Business Model Generation — can you name them without looking?</p>
+              <p class="forum-prompt">What did you complete this week and what did you not complete?</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ASSESSMENT GATE -->
+  <div class="gate-section">
+    <div class="gate-inner">
+      <p class="gate-label">▲ Assessment Gate — End of Week 6 / Start of Week 7</p>
+      <h3 class="gate-title">Before the group continues — answer these honestly</h3>
+      <div class="gate-qs">
+        <p class="gate-q">Is this opportunity actually worth pursuing, based on what we now know?</p>
+        <p class="gate-q">Do we have the right team — has everyone shown up and contributed consistently?</p>
+        <p class="gate-q">Do we understand the problem well enough to keep going?</p>
+        <p class="gate-q">Do we have what it takes — the commitment, the time, the willingness to keep going?</p>
+      </div>
+      <p class="gate-note">Each member answers these individually in writing before the group discusses. The goal is honest individual reflection first, group conversation second. Either outcome — continue, adjust, or stop — is a valid outcome. A dishonest "yes" is the only wrong answer.</p>
+    </div>
+  </div>
+
+  <!-- WEEK 7 -->
+  <div class="week-section">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <span class="week-num">WEEK 07</span>
+      <div class="week-title-block">
+        <p class="week-title">Economics for Founders</p>
+        <p class="week-subtitle">Supply, demand, incentives, competition — the forces your business will operate inside.</p>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body">
+      <div class="week-body-inner">
+
+        <div class="content-block">
+          <p class="content-block-label">Tasks This Week</p>
+          <div class="task-list">
+            <div class="task-item"><div class="task-check"></div>Read the first 3 chapters of Economics in One Lesson by Henry Hazlitt — it is available as a free PDF online</div>
+            <div class="task-item"><div class="task-check"></div>Apply what you learn to the AgriVerse context: who are the buyers, who are the sellers, what determines price, who else is competing for the same customer?</div>
+            <div class="task-item"><div class="task-check"></div>Write a 200-word analysis: what economic forces will most affect AgriVerse? Think about things like: price sensitivity of farmers, existing competition, government policy, seasonal demand</div>
+            <div class="task-item"><div class="task-check"></div>Identify one competitor — direct or indirect — and write one paragraph on how they are positioned in the market</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Resources</p>
+          <div class="resource-list">
+            <div class="resource-item">
+              <span class="resource-type book">Book</span>
+              <div>
+                <p class="resource-name">Economics in One Lesson — Henry Hazlitt (free PDF)</p>
+                <p class="resource-note">Search "Economics in One Lesson PDF free download." Read Chapters 1–3. This book is 80 years old and still one of the clearest introductions to economic thinking for non-economists.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type video">Video</span>
+              <div>
+                <p class="resource-name">Supply and Demand Explained — search "supply and demand explained simply" on YouTube</p>
+                <p class="resource-note">Any clear explanation under 10 minutes. Focus on what shifts supply and demand and what that means for price.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Deliverables</p>
+          <div class="deliverable-list">
+            <div class="deliverable-item">200-word economic analysis of AgriVerse's environment</div>
+            <div class="deliverable-item">One-paragraph competitor positioning writeup</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Founder Forum — Week 7 Prompts</p>
+          <div class="forum-box">
+            <p class="forum-box-label">Each member answers these at the weekly meeting</p>
+            <div class="forum-prompts">
+              <p class="forum-prompt">What is the single most important economic force that will affect AgriVerse — and why?</p>
+              <p class="forum-prompt">Present your competitor analysis — who are they, how are they positioned, and what does that mean for us?</p>
+              <p class="forum-prompt">What from the Hazlitt reading changed or sharpened how you think about markets?</p>
+              <p class="forum-prompt">What did you complete this week and what did you not complete?</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 8 -->
+  <div class="week-section">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <span class="week-num">WEEK 08</span>
+      <div class="week-title-block">
+        <p class="week-title">Startup Fundamentals</p>
+        <p class="week-subtitle">MVP, product-market fit, and the Lean Startup method.</p>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body">
+      <div class="week-body-inner">
+
+        <div class="content-block">
+          <p class="content-block-label">Tasks This Week</p>
+          <div class="task-list">
+            <div class="task-item"><div class="task-check"></div>Read Chapters 1–4 of The Lean Startup by Eric Ries — focus on the Build-Measure-Learn loop and the definition of an MVP</div>
+            <div class="task-item"><div class="task-check"></div>In your own words, write a 150-word answer to: "What is an MVP, and what is it not?"</div>
+            <div class="task-item"><div class="task-check"></div>As a group, sketch what the simplest possible version of AgriVerse would look like — the one that could be tested with real people in under 4 weeks with no budget. Write it up.</div>
+            <div class="task-item"><div class="task-check"></div>Prepare a Phase 2 summary to present at the Forum: what the group now understands about business that it didn't understand 4 weeks ago</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Resources</p>
+          <div class="resource-list">
+            <div class="resource-item">
+              <span class="resource-type book">Book</span>
+              <div>
+                <p class="resource-name">The Lean Startup — Eric Ries</p>
+                <p class="resource-note">Read Chapters 1–4 this week. The key concept: validated learning over assumptions. An MVP is not a cheap product — it is a specific experiment designed to test one assumption.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type video">Video</span>
+              <div>
+                <p class="resource-name">What is an MVP? — search "minimum viable product explained" on YouTube</p>
+                <p class="resource-note">Watch before you read so the book's examples land more clearly. Under 10 minutes.</p>
+              </div>
+            </div>
+            <div class="resource-item">
+              <span class="resource-type video">Video</span>
+              <div>
+                <p class="resource-name">What is Product Market Fit? — search "product market fit explained founders" on YouTube</p>
+                <p class="resource-note">Any clear video under 12 minutes. This concept will become very relevant in Phase 3 when you start validating.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Deliverables</p>
+          <div class="deliverable-list">
+            <div class="deliverable-item">150-word written answer: "What is an MVP and what is it not?"</div>
+            <div class="deliverable-item">Group sketch of the simplest testable version of AgriVerse — written up clearly</div>
+            <div class="deliverable-item">Phase 2 summary: what the group now understands about business that it didn't 4 weeks ago</div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="content-block-label">Founder Forum — Week 8 Prompts</p>
+          <div class="forum-box">
+            <p class="forum-box-label">Each member answers these at the weekly meeting</p>
+            <div class="forum-prompts">
+              <p class="forum-prompt">What is an MVP — and what would AgriVerse's MVP look like at this stage?</p>
+              <p class="forum-prompt">Present your Phase 2 summary: what do you understand now that you didn't 4 weeks ago?</p>
+              <p class="forum-prompt">How has your view of AgriVerse as a business changed over the last 8 weeks?</p>
+              <p class="forum-prompt">Are you ready for Phase 3? What are you most uncertain about going into Research & Validation?</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="manual-footer">
+  <span class="footer-logo">FDOS / MANUAL v1.0</span>
+  <span class="footer-note">Phases 3–10 to follow. Build only after understanding.</span>
+</div>
+
+<script>
+  function toggleWeek(header) {
+    const body = header.nextElementSibling;
+    const isOpen = header.classList.contains('open');
+    header.classList.toggle('open', !isOpen);
+    body.classList.toggle('open', !isOpen);
+  }
+</script>
+
+</body>
+</html>
